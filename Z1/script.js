@@ -82,19 +82,90 @@ function validateNumber(number) {
 }
 
 function validateRadio(radio) {
-    // todo
+    let input = document.getElementsByName('favouriteNumber');
+    let valid = 0;
+    for(let i=0; i<input.length; i++){
+        if(input[i].checked) valid++;
+    }
 
-    return true;
+    if(valid > 0) {
+        return true;
+        // input.className = "";
+        // const nameMessage = document.getElementById("favouriteNumber-input-message");
+        // if (nameMessage) {
+        //     nameMessage.parentElement.removeChild(nameMessage);
+
+        } else {
+            alert("Wybierz liczbe w polu radio!")
+            // input.className = "invalid";
+            // if (!document.getElementById("favouriteNumber-input-message")) {
+            //     // tworzymy element, który będzie mówił o błędzie w wybranym polu
+            //     const small = document.createElement("small");
+            //     small.id = "favouriteNumber-input-message"; // nadajemy id - potem dzięki niemu dostaniemy się do elementu, żeby go usunąć
+            //     small.className = "invalid"; // nadajemy klasę - żeby był czerwony
+            //     small.innerText = "Musisz tu cos zaznaczyc!"; // dodajemy tekst, który wyświetli się użytkownikowi
+            //
+            //     // doczepiamy element jako "rodzeństwo" inputa
+            //     input.parentElement.appendChild(small);
+            }
+    return valid;
 }
 
 function validatePassword(password) {
-    // todo
 
-    return true;
+    // haslo ma miec wiecej lub rowno 8 znaków
+    const valid = password.length >= 8;
+
+    // odszukujemy na stronie odpowiednie pole - input, w którym został wpisany numer
+    const input = document.querySelector("input[name='password']");
+
+    if (valid) {
+        input.className = "";
+
+        const nameMessage = document.getElementById("password-input-message");
+        if (nameMessage) {
+            nameMessage.parentElement.removeChild(nameMessage);
+        }
+    } else {
+        input.className = "invalid";
+        if (!document.getElementById("password-input-message")) {
+            // tworzymy element, który będzie mówił o błędzie w wybranym polu
+            const small = document.createElement("small");
+            small.id = "password-input-message"; // nadajemy id - potem dzięki niemu dostaniemy się do elementu, żeby go usunąć
+            small.className = "invalid"; // nadajemy klasę - żeby był czerwony
+            small.innerText = "Haslo musi miec co najmniej 8 znakow!"; // dodajemy tekst, który wyświetli się użytkownikowi
+
+            // doczepiamy element jako "rodzeństwo" inputa
+            input.parentElement.appendChild(small);
+        }
+    }
+    return valid;
 }
 
 function validateRepeatedPassword(password, repeatedPassword) {
-    // todo
 
-    return true;
+    const input = document.querySelector("input[name='password2']");
+    const valid = (password == repeatedPassword);
+
+    if (valid) {
+        input.className = "";
+
+        const nameMessage = document.getElementById("password2-input-message");
+        if (nameMessage) {
+            nameMessage.parentElement.removeChild(nameMessage);
+        }
+    } else {
+        input.className = "invalid";
+        if (!document.getElementById("password2-input-message")) {
+            // tworzymy element, który będzie mówił o błędzie w wybranym polu
+            const small = document.createElement("small");
+            small.id = "password2-input-message"; // nadajemy id - potem dzięki niemu dostaniemy się do elementu, żeby go usunąć
+            small.className = "invalid"; // nadajemy klasę - żeby był czerwony
+            small.innerText = "Hasla nie sa identyczne!"; // dodajemy tekst, który wyświetli się użytkownikowi
+
+            // doczepiamy element jako "rodzeństwo" inputa
+            input.parentElement.appendChild(small);
+        }
+    }
+    return valid;
 }
