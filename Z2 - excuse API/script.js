@@ -19,10 +19,11 @@ function generateExcuses() {
 
     axios.get("https://excuser.herokuapp.com/v1/excuse/" + category +"/" + numberOfExcuses).then(response => {
         //response.data.forEach(d => console.log(d.text));
-        for (let i = 0; i <= numberOfExcuses; i++) {
+
+        for (let i = 0; i < numberOfExcuses; i++) {
 
             let number = i + 1;
-            excusesDiv.append("Here is excuse number: " + number + " in category: " + category + " that you have chosen." );
+            excusesDiv.append("Here is excuse number: " + number + " in category: " + category + "." );
 
             // debugger wskazuje na błąd tej linii:
             let excuse = createExcuseDiv(response.data[i].text);
