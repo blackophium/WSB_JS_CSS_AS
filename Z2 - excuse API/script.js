@@ -18,18 +18,13 @@ function generateExcuses() {
     // sprawdziłam w debuggerze, otrzymuję odpowiedz w konsoli, ale wynik pojawia się jako undefined...
 
     axios.get("https://excuser.herokuapp.com/v1/excuse/" + category +"/" + numberOfExcuses).then(response => {
-        //response.data.forEach(d => console.log(d.text));
 
-        for (let i = 0; i < numberOfExcuses; i++) {
-
+        response.data.forEach((d, i) => {
             let number = i + 1;
-            excusesDiv.append("Here is excuse number: " + number + " in category: " + category + "." );
+            excusesDiv.append("Here is excuse number: " + number + " in category: " + category + ".");
 
-            // debugger wskazuje na błąd tej linii:
-            let excuse = createExcuseDiv(response.data[i].text);
+            let excuse = createExcuseDiv(d.excuse);
             excusesDiv.append(excuse);
-            console.log(response);
-        }
-
+        })
     })
 }
